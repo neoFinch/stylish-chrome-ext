@@ -1,0 +1,139 @@
+.todo-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid rgba(255, 255, 255, 0.7); */
+  flex: 0.5;
+  margin-top: 20px;
+  flex-direction: column;
+  /* background-color: blue; */
+  padding: 10px;
+  height: 600px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  background-color: rgba(150, 150, 150, 0.2);
+  border-radius: 5px;
+  position: relative;
+}
+
+.todo-wrapper > h2 {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.todo-wrapper .task {
+  display: flex;
+  /* border: 1px solid #fff; */
+  justify-content: space-between;
+  padding: 10px 5px;
+  margin-bottom: 5px;
+  width: calc(100% - 20px);
+  border-radius: 5px;
+}
+.todo-wrapper .task:hover {
+  cursor: pointer;
+  background-color: rgba(174, 255, 46, 0.1);
+  border-radius: 5px;
+}
+
+.create-task-wrapper{
+  /* background-color: yellow; */
+  padding: 10px 0;
+  width: calc(100% - 20px);
+  position: absolute;
+  bottom: 0px;
+}
+
+.create-task-wrapper input {
+  width: calc(100% - 20px);
+  line-height: 18px;
+  font-size: 14px;
+  padding: 10px 10px;
+  background-color: rgba(0,0,0,0.4);
+  border: none;
+  border-bottom: 3px solid #555;
+  color: greenyellow;
+  
+}
+
+.create-task-wrapper input:focus {
+  outline: none;
+  border-bottom: 3px solid greenyellow;
+  
+}
+
+.delete-task{
+  color: orange;
+  cursor: pointer;
+  /* text-shadow: 0 0 3vw orange; */
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  /* border: 1px solid orange; */
+  border-radius: 50%;
+  /* padding: 0 1px 4px 1px; */
+  display: none;
+}
+
+.todo-wrapper .task:hover .delete-task{
+  display: inline;
+}
+
+.delete-task:hover{
+  color: orangered;
+  /* border: 1px solid orangered; */
+}
+
+.scrollable {
+  overflow: scroll;
+  height: 500px;
+}
+
+.task-status-icon {
+  /* font-size: 20px; */
+  font-family: sans-serif;
+  font-weight: bold;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #555;
+  text-align: center;
+  z-index: 20;
+}
+
+.success-icon {
+  color: greenyellow;
+}
+
+.task-title {
+  flex: 1;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.tabs{
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.tabs > div {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-right: 5px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.tabs > div:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tabs > div:last-child {
+  margin-right: 0;
+}
+
+.tabs > div.active {
+  background-color: greenyellow;
+  color: #222;
+  font-weight: bold;
+  font-style: normal;
+}

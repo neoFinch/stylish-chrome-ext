@@ -1,0 +1,125 @@
+.notes-wrapper{
+  display: flex;
+  flex: 0.45;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  /* background-color: rgba(0,0,0,0.3); */
+  padding: 0 20px;
+  background-color: rgba(150, 150, 150, 0.2);
+  border-radius: 5px;
+  flex-direction: row;
+}
+
+.notes-wrapper h2 {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.notes-wrapper textarea{
+  width: 100%;
+  font-size: 24px;
+  background-color: rgba(100,100,100,0.1);
+  color: greenyellow;
+  border: none;
+  padding: 10px;
+  border-bottom: 3px solid #555;
+  height: 500px;
+  margin-bottom: 10px;
+}
+
+.notes-wrapper textarea:focus {
+  outline: none;
+  border-bottom: 3px solid greenyellow;
+}
+
+.add-note {
+  cursor: pointer;
+  margin-left: 25px;
+  display: inline-block;
+  vertical-align: bottom;
+  transition: all 0.3s ease;
+}
+
+.add-note:hover {
+  /* box-shadow: 0 0 1vw greenyellow; */
+  transform: scale(1.2);
+  color: greenyellow;
+  transition: all 0.1s ease;
+}
+
+.notes-action {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.notes-action .btn {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 20px;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.notes-action .btn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: greenyellow;
+  box-shadow: 0 0 3px greenyellow;
+}
+
+.notes-wrapper .scaled-down {
+  transform: scale(0.9);
+    width: calc(50%);
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.select-note{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(100, 100, 100, 0.4);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+  display: none;
+  
+}
+.scaled-down-note-wrapper{
+  position: relative;
+}
+
+.scaled-down-note-wrapper:hover .select-note{
+  display: block;
+}
+
+.scaled-down-note-wrapper:hover textarea{
+  filter: blur(2px);
+}
+
+.select-note span.edit-note {
+  top: 75px;
+  position: relative;
+  padding: 30px;
+  border-radius: 5px;
+  color: greenyellow;
+  cursor: pointer;
+  background-color: #222;
+  /* box-shadow: 0 0 2vw #FB4264; */
+}
+
+.select-note .delete-note {
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  cursor: pointer;
+  color: #FB4264;
+}
