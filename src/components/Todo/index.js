@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import './style.css';
+import Moment from 'react-moment';
+import _ from 'underscore';
+import moment from 'moment';
+import helper from '../../services/helper';
 
 class Todo extends Component {
   constructor(props) {
@@ -14,12 +18,6 @@ class Todo extends Component {
     }
   }
 
-
-  addTask = (e) => {
-    let task = e.target.value;
-    this.setState({ task });
-  }
-
   deleteTask = (id) => {
     let {todo} = this.state;
     todo = todo.filter(task => task.id !== id);
@@ -27,153 +25,125 @@ class Todo extends Component {
     localStorage.setItem('todo', JSON.stringify([...todo]));
   }
 
-  changeTaskStatus = (timestamp) => {
+  changeTaskStatus = (index, timestamp) => {
     console.log('timestamp : ', timestamp);
     let {todo} = this.state;
-    todo = todo.map(task => {
+
+    console.log('task to change ', todo[index] );
+
+    todo[index].tasks.map(task => {
       if( task.timestamp === timestamp ) {
         task.status = !task.status;
       }
-      return task;
     });
-    // console.log(todo[id-1]);
-    // todo[id-1].status = !todo[id-1].status;
-    // console.log(todo[id-1].status);
     this.setState({ todo });
     localStorage.setItem('todo', JSON.stringify([...todo]));
   }
 
   keyDown = (e) => {
     let key = e.nativeEvent.key;
-    if(key === 'Enter') {
-      let {todo, task} = this.state;
+    console.log('task = ', e.target.value);
+    let task = e.target.value;
+    let {todo} = this.state;
+    if(key === 'Enter' && task != '') {
       let id = todo.length + 1;
       let title = task;
       let status = false;
-      let timestamp = new Date().toUTCString();
+      let timestamp = Date.now();
+      let date = helper.getTodayDate();
+
+      let object = { date, tasks: [] };
+
+      let count = 0;
+      todo.map((task, index) => {
+        if(task.date === date) {
+          console.log('task matched : ', task);
+          task.tasks.push({title, status, timestamp});
+          ++count;
+        } 
+      })
+      
+      if(count === 0) {
+        console.log('if');
+        todo.push({ date, tasks: [{title, status, timestamp}] });
+      } 
+
       console.log('todo list : ', todo);
-      todo.push({ id, title, status, timestamp });
       console.log(todo);
-      this.setState({ todo, task: '' }); 
+      this.setState({ todo }); 
+      e.target.value = '';
       localStorage.setItem('todo', JSON.stringify([...todo]));
     }
   }
 
-  pendingTasks = () => {
+  listTasks = (filterBy = 'all') => {
     let {todo} = this.state;
-    let pendingTasks = todo.filter(task => task.status === false);
-
+    let todos = todo;
     return (
       <div>
-        {pendingTasks.map((task, index) => {
+        {todos.map((todo, index) => {
           return (
-            <div key={index} className='task'>
-            {task.status === false ? 
-              <i className='material-icons'>check_box_outline_blank</i> 
-              : 
-              <span className='task-status-icon success-icon'>check_box</span>
-            }
-            <span 
-              className='task-title' 
-              onClick={() => this.changeTaskStatus(task.timestamp)}>
-              {task.title}
-            </span>
-            {/* <span style={{width: '10%', background: 'yellow'}} >{task.timestamp}</span> */}
-            <i 
-              onClick={() => this.deleteTask(task.id)}
-              className='delete-task material-icons'
-            >
-              cancel
-            </i>
-          </div>
+            <div key={index}>
+              <div key={index} className='show-date'>
+                <span>{todo.date}</span>
+              </div>
+              {this.filterListAndRender(todo.tasks, index, filterBy)}
+            </div>
           )
         })}
       </div>
     )
   }
 
-  completedTasks = () => {
-    let {todo} = this.state;
-    let pendingTasks = todo.filter(task => task.status === true);
+  filterListAndRender = (tasks, index, filterBy = 'all') => {
+    if(filterBy === 'pending') {
+      tasks = tasks.filter(task => task.status === false);
+    } else if (filterBy === 'completed') {
+      tasks = tasks.filter(task => task.status === true);
+    } else {
+      // nothing
+    }
 
-    return (
-      <div>
-        {pendingTasks.map((task, index) => {
-          return (
-            <div key={index} className='task'>
+    if(tasks.length) {
+      return (tasks.map((task) => {
+        return (
+          <div 
+            id={task.timestamp}
+            key={task.timestamp} 
+            className='task' 
+            draggable={true} 
+            onDrag={this.onDragStart}>
             {task.status === false ? 
               <i className='material-icons'>check_box_outline_blank</i> 
               : 
               <i className='material-icons success-icon'>check_box</i>
             }
             <span 
+              style={{textDecoration: task.status ? 'line-through': ''}}
               className='task-title' 
-              onClick={() => this.changeTaskStatus(task.timestamp)}>
+              onClick={() => this.changeTaskStatus(index, task.timestamp)}>
               {task.title}
             </span>
-            {/* <span style={{width: '10%', background: 'yellow'}} >{task.timestamp}</span> */}
             <i 
-              onClick={() => this.deleteTask(task.id)}
-              className='delete-task material-icons'
-            >
-              cancel
-            </i>
-            
-          </div>
-          )
-        })}
-      </div>
-    )
-  }
-  
-
-  allTasks = () => {
-    let {todo} = this.state;
-    // let pendingTasks = todo.filter(task => task.status === true);
-
-    return (
-      <div>
-        {todo.map((task, index) => {
-          return (
-            <div 
-              key={index} 
-              className='task' 
-              draggable={true} 
-              onDrag={this.onDragStart}
-            >
-            {task.status === false ? 
-              <i className='material-icons'>check_box_outline_blank</i> 
-              : 
-              <i className='material-icons success-icon'>check_box</i>
-            }
-            <span 
-              className='task-title' 
-              onClick={() => this.changeTaskStatus(task.timestamp)}>
-              {task.title}
-            </span>
-            {/* <span style={{width: '10%', background: 'yellow'}} >{task.timestamp}</span> */}
-            <i 
-              onClick={() => this.deleteTask(task.id)}
-              className='delete-task material-icons'
-            >
+              onClick={() => this.deleteTask(task.timestamp)}
+              className='delete-task material-icons'>
               cancel
             </i>
             <i className='material-icons'>drag_handle</i>
           </div>
-          )
-        })}
-      </div>
-    )
+        )
+      })) 
+    } else {
+      return null;
+    }
   }
 
   onDragStart = (e) => {
     console.log('drag X: ', e);
   } 
   
-
-  render() { 
+  render() {
     let {todo, task, activeTab} = this.state;
-
     return ( 
       <div className='todo-wrapper'>
         <h2>TODO LIST</h2>
@@ -191,20 +161,18 @@ class Todo extends Component {
         </div>
         <div className='scrollable'>
           {
-            activeTab === 1 ? this.pendingTasks() : null
+            activeTab === 1 ? this.listTasks('pending') : null
           }
           {
-            activeTab === 2 ? this.completedTasks() : null
+            activeTab === 2 ? this.listTasks('completed') : null
           }
           {
-            activeTab === 3 ? this.allTasks() : null
+            activeTab === 3 ? this.listTasks() : null
           }
         </div> 
         <div className='create-task-wrapper'>
           <input 
             onKeyDown={this.keyDown} 
-            onChange={this.addTask} 
-            value={task} 
             type='text' 
             placeholder='Type here...' />
         </div>
@@ -214,7 +182,3 @@ class Todo extends Component {
 }
  
 export default Todo;
-
-// function Todo(params) {
-//   const []
-// }

@@ -7,7 +7,7 @@
   flex-direction: column;
   /* background-color: blue; */
   padding: 10px;
-  height: 600px;
+  height: 617px;
   box-shadow: 0 0 4px rgba(0,0,0,0.4);
   background-color: rgba(150, 150, 150, 0.2);
   border-radius: 5px;
@@ -30,7 +30,7 @@
 }
 .todo-wrapper .task:hover {
   cursor: pointer;
-  background-color: rgba(174, 255, 46, 0.1);
+  background-color: rgba(0 , 0, 0, 0.4);
   border-radius: 5px;
 }
 
@@ -61,31 +61,24 @@
 }
 
 .delete-task{
-  color: orange;
+  color: orangered;
   cursor: pointer;
-  /* text-shadow: 0 0 3vw orange; */
   width: 20px;
   height: 20px;
   text-align: center;
   line-height: 20px;
-  /* border: 1px solid orange; */
   border-radius: 50%;
-  /* padding: 0 1px 4px 1px; */
-  display: none;
+  visibility: hidden;
+  margin: 0 5px;
 }
 
 .todo-wrapper .task:hover .delete-task{
-  display: inline;
-}
-
-.delete-task:hover{
-  color: orangered;
-  /* border: 1px solid orangered; */
+  visibility: visible;
 }
 
 .scrollable {
   overflow: scroll;
-  height: 500px;
+  height: 490px;
 }
 
 .task-status-icon {
@@ -136,4 +129,18 @@
   color: #222;
   font-weight: bold;
   font-style: normal;
+}
+
+.show-date{
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.show-date>span {
+  background-color: #00d1b277;
+  color: #222;
+  padding: 2px 5px;
+  border-radius: 5px;
 }

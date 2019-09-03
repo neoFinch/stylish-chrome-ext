@@ -20,7 +20,7 @@ class Notes extends Component {
     console.log(e.target.value);
     //  notes[index].timestamp = Date.now();
     //  notes[index].id = notes.length - 1;
-     notes[index].desc = e.target.value; 
+    notes[index].desc = e.target.value; 
     this.setState({ notes });
     console.log('notes: ', notes);
     localStorage.setItem('notes', JSON.stringify(notes));
@@ -76,22 +76,22 @@ class Notes extends Component {
       <div style={{width: '100%', height: '530px', overflow: 'scroll'}}>
         {notes.map((note, index) => {
           return (
-          <div key={note.timestamp} className='scaled-down-note-wrapper scaled-down'>  
-            <textarea disabled={true} defaultValue={note.desc} >
-            </textarea>
-            <div className='select-note'>
-              <span 
-                className='edit-note' 
-                onClick={() => this.setState({ activeNote: index, showAllNotes: false })}>
+            <div key={note.timestamp} className='scaled-down-note-wrapper scaled-down'>  
+              <textarea disabled={true} defaultValue={note.desc} >
+              </textarea>
+              <div className='select-note'>
+                <span 
+                  className='edit-note' 
+                  onClick={() => this.setState({ activeNote: index, showAllNotes: false })}>
                   Edit
-              </span>
-              <i 
-              className='material-icons delete-note'
-              onClick={() => this.deleteNote(index)}>
-                cancel
-              </i>
+                </span>
+                <i 
+                  className='material-icons delete-note'
+                  onClick={() => this.deleteNote(index)}>
+                  cancel
+                </i>
+              </div>
             </div>
-          </div>
           )
         })}
       </div>
@@ -101,7 +101,7 @@ class Notes extends Component {
   render() { 
     let {notes, activeNote, showAllNotes} = this.state;
     return ( 
-    <div className='notes-wrapper'>
+      <div className='notes-wrapper'>
         <h2>
           NOTES 
           <i title='add note' onClick={this.addNote} className='add-note material-icons'>add_box</i>
@@ -114,23 +114,21 @@ class Notes extends Component {
             show all
           </div>  
         </div>
-      {
-        showAllNotes ?
-          this.renderAllNotes()
-          :
-          notes.map((note, index) => 
-            <textarea 
-              style={{display: activeNote === index ? 'block':'none' }}
-              defaultValue={note.desc} 
-              key={index} 
-              onChange={(e) => this.saveNote(e, index)}>
-            </textarea>
-          )
-          
-          
-      }
+        {
+          showAllNotes ?
+            this.renderAllNotes()
+            :
+            notes.map((note, index) => 
+              <textarea 
+                style={{display: activeNote === index ? 'block':'none' }}
+                defaultValue={note.desc} 
+                key={index} 
+                onChange={(e) => this.saveNote(e, index)}>
+              </textarea>
+            )  
+        }
       
-    </div> );
+      </div> );
   }
 }
  
