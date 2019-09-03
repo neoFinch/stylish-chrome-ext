@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import _ from 'underscore';
 import moment from 'moment';
 import helper from '../../services/helper';
+import ReactTooltip from 'react-tooltip';
 
 class Todo extends Component {
   constructor(props) {
@@ -18,9 +19,10 @@ class Todo extends Component {
     }
   }
 
-  deleteTask = (id) => {
+  deleteTask = (index, timestamp) => {
     let {todo} = this.state;
-    todo = todo.filter(task => task.id !== id);
+    console.log('to delete : ', todo[index]);
+    todo[index].tasks = todo[index].tasks.filter(task => task.timestamp !== timestamp);
     this.setState({ todo });
     localStorage.setItem('todo', JSON.stringify([...todo]));
   }
@@ -76,16 +78,32 @@ class Todo extends Component {
     }
   }
 
+  showCustomDates = (date) => {
+    let taskDate = moment(date, 'DD/MM/YYYY');
+    let currentDate = moment(helper.getTodayDate(), 'DD/MM/YYYY');
+    let days = currentDate.diff(taskDate, 'days');
+    console.log('days: ', days);
+    if(days === 0) {
+      return 'today';
+    } else if (days === 1) {
+      return 'yesterday';
+    } else {
+      return date;
+    }
+  }
+
   listTasks = (filterBy = 'all') => {
     let {todo} = this.state;
     let todos = todo;
     return (
       <div>
+        <ReactTooltip id='custom-dates' getContent={() => { return }}/>
         {todos.map((todo, index) => {
           return (
             <div key={index}>
               <div key={index} className='show-date'>
-                <span>{todo.date}</span>
+                <span data-tip={todo.date} data-for='custom-dates' >{this.showCustomDates(todo.date)}</span>
+                {/* <span>{todo.date}</span> */}
               </div>
               {this.filterListAndRender(todo.tasks, index, filterBy)}
             </div>
@@ -104,7 +122,7 @@ class Todo extends Component {
       // nothing
     }
 
-    if(tasks.length) {
+
       return (tasks.map((task) => {
         return (
           <div 
@@ -125,7 +143,7 @@ class Todo extends Component {
               {task.title}
             </span>
             <i 
-              onClick={() => this.deleteTask(task.timestamp)}
+              onClick={() => this.deleteTask(index,task.timestamp)}
               className='delete-task material-icons'>
               cancel
             </i>
@@ -133,9 +151,6 @@ class Todo extends Component {
           </div>
         )
       })) 
-    } else {
-      return null;
-    }
   }
 
   onDragStart = (e) => {

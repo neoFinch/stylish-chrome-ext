@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import ReactTooltip from 'react-tooltip';
 
 class Notes extends Component {
   
@@ -102,16 +103,41 @@ class Notes extends Component {
     let {notes, activeNote, showAllNotes} = this.state;
     return ( 
       <div className='notes-wrapper'>
+        <ReactTooltip id='add-note' getContent={() => { return }}/>
+        <ReactTooltip id='show-all-notes' getContent={() => { return }}/>
+        <ReactTooltip id='navigate-next' getContent={() => { return }}/>
+        <ReactTooltip id='navigate-before' getContent={() => { return }}/>
         <h2>
           NOTES 
-          <i title='add note' onClick={this.addNote} className='add-note material-icons'>add_box</i>
+          <i data-tip='Click to add a new note' 
+            onClick={this.addNote} 
+            data-for='add-note'
+            data-type='dark'
+            className='add-note material-icons'>
+              add_box
+          </i>
         </h2>
         <div className='notes-action'>
-          <div className='btn' onClick={() => this.changeNote('decrease')}>prev</div>  
-          <div className='btn' onClick={() => this.changeNote('increase')}>next</div>  
-          <div className='btn' onClick={this.showAllNotes} style={{color: showAllNotes ? 'greenyellow': ''}}>
+          <div 
+            data-tip='Show previous note' 
+            data-for='navigate-before' 
+            className='btn' onClick={() => this.changeNote('decrease')}>
+            <i className='material-icons'>navigate_before</i>
+          </div>  
+          <div 
+            data-tip='Show next note' 
+            data-for='navigate-next'
+            className='btn' 
+            onClick={() => this.changeNote('increase')}>
+            <i className='material-icons'>navigate_next</i>
+          </div>  
+          <div 
+            data-tip='Show all notes'
+            data-for='show-all-notes'
+            className='btn' 
+            onClick={this.showAllNotes} 
+            style={{color: showAllNotes ? 'greenyellow': ''}}>
             <i style={{verticalAlign: 'middle'}} className='material-icons'>view_module</i>
-            show all
           </div>  
         </div>
         {
