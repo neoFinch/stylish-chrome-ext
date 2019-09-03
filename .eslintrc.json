@@ -1,5 +1,4 @@
 {
-  "extends": ["airbnb/hooks"],
   "rules": {
     "indent": [1, 2, { "MemberExpression": 0, "SwitchCase": 1 }],
     "react/jsx-indent": [1, 2],

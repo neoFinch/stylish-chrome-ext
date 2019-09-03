@@ -78,17 +78,34 @@ class Todo extends Component {
     }
   }
 
-  showCustomDates = (date) => {
+  showCustomDates = (tasks, filterBy, date) => {
     let taskDate = moment(date, 'DD/MM/YYYY');
     let currentDate = moment(helper.getTodayDate(), 'DD/MM/YYYY');
     let days = currentDate.diff(taskDate, 'days');
-    console.log('days: ', days);
+    let day = '';
     if(days === 0) {
-      return 'today';
+      day = 'today';
     } else if (days === 1) {
-      return 'yesterday';
+      day = 'yesterday';
     } else {
-      return date;
+      day = date;
+    }
+    if(filterBy === 'pending') {
+      return tasks.filter(task => task.status === false).length ? 
+        <span data-tip={date} data-for='custom-dates' >
+          {day}
+        </span> : null
+    } else if (filterBy === 'completed') {
+      return tasks.filter(task => task.status === true).length ? 
+        <span data-tip={date} data-for='custom-dates' >
+          {day}
+        </span> : null
+    } else {
+      return (
+        <span data-tip={date} data-for='custom-dates' >
+          {day}
+        </span>
+      )
     }
   }
 
@@ -102,8 +119,7 @@ class Todo extends Component {
           return (
             <div key={index}>
               <div key={index} className='show-date'>
-                <span data-tip={todo.date} data-for='custom-dates' >{this.showCustomDates(todo.date)}</span>
-                {/* <span>{todo.date}</span> */}
+                {this.showCustomDates(todo.tasks, filterBy, todo.date)}
               </div>
               {this.filterListAndRender(todo.tasks, index, filterBy)}
             </div>
@@ -121,36 +137,34 @@ class Todo extends Component {
     } else {
       // nothing
     }
-
-
-      return (tasks.map((task) => {
-        return (
-          <div 
-            id={task.timestamp}
-            key={task.timestamp} 
-            className='task' 
-            draggable={true} 
-            onDrag={this.onDragStart}>
-            {task.status === false ? 
-              <i className='material-icons'>check_box_outline_blank</i> 
-              : 
-              <i className='material-icons success-icon'>check_box</i>
-            }
-            <span 
-              style={{textDecoration: task.status ? 'line-through': ''}}
-              className='task-title' 
-              onClick={() => this.changeTaskStatus(index, task.timestamp)}>
-              {task.title}
-            </span>
-            <i 
-              onClick={() => this.deleteTask(index,task.timestamp)}
-              className='delete-task material-icons'>
-              cancel
-            </i>
-            <i className='material-icons'>drag_handle</i>
-          </div>
-        )
-      })) 
+    return (tasks.map((task) => {
+      return (
+        <div 
+          id={task.timestamp}
+          key={task.timestamp} 
+          className='task' 
+          draggable={true} 
+          onDrag={this.onDragStart}>
+          {task.status === false ? 
+            <i className='material-icons'>check_box_outline_blank</i> 
+            : 
+            <i className='material-icons success-icon'>check_box</i>
+          }
+          <span 
+            style={{textDecoration: task.status ? 'line-through': ''}}
+            className='task-title' 
+            onClick={() => this.changeTaskStatus(index, task.timestamp)}>
+            {task.title}
+          </span>
+          <i 
+            onClick={() => this.deleteTask(index,task.timestamp)}
+            className='delete-task material-icons'>
+            cancel
+          </i>
+          {/* <i className='material-icons'>drag_handle</i> */}
+        </div>
+      )
+    })) 
   }
 
   onDragStart = (e) => {

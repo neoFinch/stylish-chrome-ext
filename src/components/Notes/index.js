@@ -109,10 +109,9 @@ class Notes extends Component {
         <ReactTooltip id='navigate-before' getContent={() => { return }}/>
         <h2>
           NOTES 
-          <i data-tip='Click to add a new note' 
+          <i data-tip='Add a new note' 
             onClick={this.addNote} 
             data-for='add-note'
-            data-type='dark'
             className='add-note material-icons'>
               add_box
           </i>
