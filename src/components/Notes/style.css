@@ -1,13 +1,15 @@
 .notes-wrapper{
   display: flex;
-  flex: 0.45;
+  flex: 1;
   margin-top: 20px;
   flex-wrap: wrap;
   /* background-color: rgba(0,0,0,0.3); */
   padding: 0 20px;
-  background-color: rgba(150, 150, 150, 0.2);
+  /* background-color: rgba(150, 150, 150, 0.2); */
+  background-color: #333333;
   border-radius: 5px;
   flex-direction: row;
+  box-shadow: 0 0 4px rgba(0,0,0,0.4);
 }
 
 .notes-wrapper h2 {
@@ -18,19 +20,21 @@
 
 .notes-wrapper textarea{
   width: 100%;
-  font-size: 24px;
-  background-color: rgba(100,100,100,0.1);
-  color: greenyellow;
+  font-size: 14px;
+  background-color: rgba(0,0,0,0.3);
+  color: #efefef;
   border: none;
   padding: 10px;
   border-bottom: 3px solid #555;
   height: 500px;
   margin-bottom: 10px;
+  line-height: 20px;
+  letter-spacing: 1px;
 }
 
 .notes-wrapper textarea:focus {
   outline: none;
-  border-bottom: 3px solid greenyellow;
+  border-bottom: 3px solid #00ff99;
 }
 
 .add-note {
@@ -42,9 +46,9 @@
 }
 
 .add-note:hover {
-  /* box-shadow: 0 0 1vw greenyellow; */
+  /* box-shadow: 0 0 1vw #00ff99; */
   transform: scale(1.2);
-  color: greenyellow;
+  color: #00ff99;
   transition: all 0.1s ease;
 }
 
@@ -68,16 +72,17 @@
 
 .notes-action .btn:hover {
   background-color: rgba(0, 0, 0, 0.4);
-  color: greenyellow;
-  box-shadow: 0 0 3px greenyellow;
+  color: #00ff99;
+  box-shadow: 0 0 3px #00ff99;
 }
 
 .notes-wrapper .scaled-down {
   transform: scale(0.9);
-    width: calc(50%);
-    height: 200px;
-    display: inline-block;
-    overflow: hidden;
+  width: calc(50%);
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  transition-delay: 0.4s;
 }
 
 .select-note{
@@ -110,7 +115,7 @@
   position: relative;
   padding: 30px;
   border-radius: 5px;
-  color: greenyellow;
+  color: #00ff99;
   cursor: pointer;
   background-color: #222;
   /* box-shadow: 0 0 2vw #FB4264; */

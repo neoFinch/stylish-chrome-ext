@@ -5,6 +5,12 @@ import _ from 'underscore';
 import moment from 'moment';
 import helper from '../../services/helper';
 import ReactTooltip from 'react-tooltip';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
+import Tags from '../Tags';
+import { Observable, Subscriber } from 'rxjs';
 
 class Todo extends Component {
   constructor(props) {
@@ -15,8 +21,40 @@ class Todo extends Component {
     this.state = {
       todo: todo,
       task: '',
-      activeTab: 3
+      activeTab: 3,
+      showTags: false,
+
     }
+  }
+
+  startObserver = () => {
+    const observable = new Observable(subscriber => {
+      subscriber.next(localStorage.getItem('todo'));
+    });
+
+    console.log('just before subscribe');
+    observable.subscribe({
+      next(x) { console.log('got value ' + x); },
+      error(err) { console.error('something wrong occurred: ' + err); },
+      complete() { console.log('done'); }
+    });
+    console.log('just after subscribe');
+  }
+
+  componentDidMount() {
+    this.startObserver();
+    let scrollable = document.getElementById('scrollable');
+    let scrollHeight = scrollable.scrollHeight;
+    let x = 3;
+    let custInterval = setInterval( () => {
+      scrollable.scrollTo({behavior: 'smooth', top: scrollHeight-x});
+      if(x <= 0 ) {
+        clearInterval(custInterval);
+      }else {
+        --x;
+      }
+    }, 300);
+    
   }
 
   deleteTask = (index, timestamp) => {
@@ -43,9 +81,26 @@ class Todo extends Component {
   }
 
   keyDown = (e) => {
+
+    console.log('state : ', this.state);
     let key = e.nativeEvent.key;
-    console.log('task = ', e.target.value);
     let task = e.target.value;
+    // Manage showing tags  
+    console.log('key : ', key);  
+    if(key === '#') {
+      this.setState({ showTags: true })
+    }
+    
+    if(key === ' ') {
+      this.setState({ showTags: false })
+    }
+
+    if(key === 'ArrowUp') {
+
+    }
+    
+    // end of managing tags
+
     let {todo} = this.state;
     if(key === 'Enter' && task != '') {
       let id = todo.length + 1;
@@ -70,11 +125,11 @@ class Todo extends Component {
         todo.push({ date, tasks: [{title, status, timestamp}] });
       } 
 
-      console.log('todo list : ', todo);
-      console.log(todo);
-      this.setState({ todo }); 
       e.target.value = '';
       localStorage.setItem('todo', JSON.stringify([...todo]));
+      let scrollable = document.getElementById('scrollable');
+      let scrollHeight = scrollable.scrollHeight + 200;
+      this.setState({ todo }, () => { scrollable.scrollTo(0, scrollHeight); });
     }
   }
 
@@ -91,20 +146,33 @@ class Todo extends Component {
       day = date;
     }
     if(filterBy === 'pending') {
-      return tasks.filter(task => task.status === false).length ? 
-        <span data-tip={date} data-for='custom-dates' >
-          {day}
-        </span> : null
-    } else if (filterBy === 'completed') {
-      return tasks.filter(task => task.status === true).length ? 
-        <span data-tip={date} data-for='custom-dates' >
-          {day}
-        </span> : null
-    } else {
-      return (
+      return <CSSTransition 
+        unmountOnExit
+        in={tasks.filter(task => task.status === false).length ? true: false} timeout={500} 
+        classNames='animate'>
         <span data-tip={date} data-for='custom-dates' >
           {day}
         </span>
+      </CSSTransition>
+    } else if (filterBy === 'completed') {
+      return <CSSTransition 
+        unmountOnExit
+        in={tasks.filter(task => task.status === true).length ? true: false} timeout={500} 
+        classNames='animate'>
+        <span data-tip={date} data-for='custom-dates' >
+          {day}
+        </span>
+      </CSSTransition>
+    } else {
+      return (
+        <CSSTransition 
+          unmountOnExit
+          in={tasks.length ? true: false} timeout={500} 
+          classNames='animate'>
+          <span data-tip={date} data-for='custom-dates' >
+            {day}
+          </span>
+        </CSSTransition>
       )
     }
   }
@@ -117,11 +185,13 @@ class Todo extends Component {
         <ReactTooltip id='custom-dates' getContent={() => { return }}/>
         {todos.map((todo, index) => {
           return (
-            <div key={index}>
-              <div key={index} className='show-date'>
+            <div id={todo.date} key={todo.date}>
+              <div className='show-date'>
                 {this.showCustomDates(todo.tasks, filterBy, todo.date)}
               </div>
-              {this.filterListAndRender(todo.tasks, index, filterBy)}
+              <TransitionGroup>
+                {this.filterListAndRender(todo.tasks, index, filterBy)}
+              </TransitionGroup>
             </div>
           )
         })}
@@ -130,6 +200,7 @@ class Todo extends Component {
   }
 
   filterListAndRender = (tasks, index, filterBy = 'all') => {
+    let {animate} = this.state;
     if(filterBy === 'pending') {
       tasks = tasks.filter(task => task.status === false);
     } else if (filterBy === 'completed') {
@@ -139,37 +210,38 @@ class Todo extends Component {
     }
     return (tasks.map((task) => {
       return (
-        <div 
-          id={task.timestamp}
+        <CSSTransition 
           key={task.timestamp} 
-          className='task' 
-          draggable={true} 
-          onDrag={this.onDragStart}>
-          {task.status === false ? 
-            <i className='material-icons'>check_box_outline_blank</i> 
-            : 
-            <i className='material-icons success-icon'>check_box</i>
-          }
-          <span 
-            style={{textDecoration: task.status ? 'line-through': ''}}
-            className='task-title' 
-            onClick={() => this.changeTaskStatus(index, task.timestamp)}>
-            {task.title}
-          </span>
-          <i 
-            onClick={() => this.deleteTask(index,task.timestamp)}
-            className='delete-task material-icons'>
-            cancel
-          </i>
-          {/* <i className='material-icons'>drag_handle</i> */}
-        </div>
+          timeout={500} 
+          classNames='animate'>
+          <div className='task'>
+            {task.status === false ? 
+              <i className='material-icons'>check_box_outline_blank</i> 
+              : 
+              <i className='material-icons success-icon'>check_box</i>
+            }
+            <span 
+              style={{textDecoration: task.status ? 'line-through': ''}}
+              className='task-title' 
+              onClick={() => this.changeTaskStatus(index, task.timestamp)}>
+              {task.title}
+            </span>
+            <i 
+              onClick={() => this.deleteTask(index,task.timestamp)}
+              className='delete-task material-icons'>
+              cancel
+            </i>
+            {/* <i className='material-icons'>drag_handle</i> */}
+          </div>
+        </CSSTransition>
       )
     })) 
   }
 
-  onDragStart = (e) => {
-    console.log('drag X: ', e);
-  } 
+  handleTaskChange = (e) => {
+    let task = e.target.value;
+    this.setState({ task });
+  }
   
   render() {
     let {todo, task, activeTab} = this.state;
@@ -186,9 +258,8 @@ class Todo extends Component {
           <div onClick={()=>{this.setState({ activeTab: 2 })}} key={2} className={activeTab===2 ? 'active':''}>
             Completed
           </div>
-         
         </div>
-        <div className='scrollable'>
+        <div id='scrollable'>
           {
             activeTab === 1 ? this.listTasks('pending') : null
           }
@@ -200,7 +271,15 @@ class Todo extends Component {
           }
         </div> 
         <div className='create-task-wrapper'>
+          <CSSTransition 
+            unmountOnExit 
+            in={this.state.showTags} 
+            classNames='animate'
+            timeout={500}>
+            <Tags text={this.state.task}/>
+          </CSSTransition>
           <input 
+            onChange={this.handleTaskChange}
             onKeyDown={this.keyDown} 
             type='text' 
             placeholder='Type here...' />

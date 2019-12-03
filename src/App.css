@@ -17,8 +17,7 @@ body{
   padding: 0;
   margin: 0;
   font-family: 'Dank Mono';
-  background: linear-gradient(200deg, rgba(213, 213, 213, 0.01) 0%, rgba(213, 213, 213, 0.01) 14.286%,rgba(140, 140, 140, 0.01) 14.286%, rgba(140, 140, 140, 0.01) 28.572%,rgba(52, 52, 52, 0.01) 28.572%, rgba(52, 52, 52, 0.01) 42.858%,rgba(38, 38, 38, 0.01) 42.858%, rgba(38, 38, 38, 0.01) 57.144%,rgba(159, 159, 159, 0.01) 57.144%, rgba(159, 159, 159, 0.01) 71.42999999999999%,rgba(71, 71, 71, 0.01) 71.43%, rgba(71, 71, 71, 0.01) 85.71600000000001%,rgba(88, 88, 88, 0.01) 85.716%, rgba(88, 88, 88, 0.01) 100.002%),linear-gradient(337deg, rgba(25, 25, 25, 0.01) 0%, rgba(25, 25, 25, 0.01) 12.5%,rgba(150, 150, 150, 0.01) 12.5%, rgba(150, 150, 150, 0.01) 25%,rgba(84, 84, 84, 0.01) 25%, rgba(84, 84, 84, 0.01) 37.5%,rgba(85, 85, 85, 0.01) 37.5%, rgba(85, 85, 85, 0.01) 50%,rgba(188, 188, 188, 0.01) 50%, rgba(188, 188, 188, 0.01) 62.5%,rgba(80, 80, 80, 0.01) 62.5%, rgba(80, 80, 80, 0.01) 75%,rgba(73, 73, 73, 0.01) 75%, rgba(73, 73, 73, 0.01) 87.5%,rgba(219, 219, 219, 0.01) 87.5%, rgba(219, 219, 219, 0.01) 100%),linear-gradient(203deg, rgba(233, 233, 233, 0.01) 0%, rgba(233, 233, 233, 0.01) 25%,rgba(114, 114, 114, 0.01) 25%, rgba(114, 114, 114, 0.01) 50%,rgba(164, 164, 164, 0.01) 50%, rgba(164, 164, 164, 0.01) 75%,rgba(228, 228, 228, 0.01) 75%, rgba(228, 228, 228, 0.01) 100%),linear-gradient(317deg, rgba(139, 139, 139, 0.02) 0%, rgba(139, 139, 139, 0.02) 16.667%,rgba(44, 44, 44, 0.02) 16.667%, rgba(44, 44, 44, 0.02) 33.334%,rgba(166, 166, 166, 0.02) 33.334%, rgba(166, 166, 166, 0.02) 50.001000000000005%,rgba(2, 2, 2, 0.02) 50.001%, rgba(2, 2, 2, 0.02) 66.668%,rgba(23, 23, 23, 0.02) 66.668%, rgba(23, 23, 23, 0.02) 83.33500000000001%,rgba(21, 21, 21, 0.02) 83.335%, rgba(21, 21, 21, 0.02) 100.002%),linear-gradient(328deg, rgba(3, 3, 3, 0.03) 0%, rgba(3, 3, 3, 0.03) 12.5%,rgba(116, 116, 116, 0.03) 12.5%, rgba(116, 116, 116, 0.03) 25%,rgba(214, 214, 214, 0.03) 25%, rgba(214, 214, 214, 0.03) 37.5%,rgba(217, 217, 217, 0.03) 37.5%, rgba(217, 217, 217, 0.03) 50%,rgba(68, 68, 68, 0.03) 50%, rgba(68, 68, 68, 0.03) 62.5%,rgba(118, 118, 118, 0.03) 62.5%, rgba(118, 118, 118, 0.03) 75%,rgba(200, 200, 200, 0.03) 75%, rgba(200, 200, 200, 0.03) 87.5%,rgba(198, 198, 198, 0.03) 87.5%, rgba(198, 198, 198, 0.03) 100%),linear-gradient(97deg, rgba(195, 195, 195, 0.03) 0%, rgba(195, 195, 195, 0.03) 16.667%,rgba(177, 177, 177, 0.03) 16.667%, rgba(177, 177, 177, 0.03) 33.334%,rgba(170, 170, 170, 0.03) 33.334%, rgba(170, 170, 170, 0.03) 50.001000000000005%,rgba(158, 158, 158, 0.03) 50.001%, rgba(158, 158, 158, 0.03) 66.668%,rgba(121, 121, 121, 0.03) 66.668%, rgba(121, 121, 121, 0.03) 83.33500000000001%,rgba(146, 146, 146, 0.03) 83.335%, rgba(146, 146, 146, 0.03) 100.002%),linear-gradient(268deg, rgba(103, 103, 103, 0.03) 0%, rgba(103, 103, 103, 0.03) 25%,rgba(112, 112, 112, 0.03) 25%, rgba(112, 112, 112, 0.03) 50%,rgba(4, 4, 4, 0.03) 50%, rgba(4, 4, 4, 0.03) 75%,rgba(227, 227, 227, 0.03) 75%, rgba(227, 227, 227, 0.03) 100%),linear-gradient(90deg, hsl(98,0%,0%),hsl(98,0%,0%));
-  width: 100%;
+  background: #111	;
   height: 100vh;
   font-size: 16px;
 }
@@ -41,19 +40,30 @@ h1, h2, h3, h4, h5, h6 {
   /* color: var(--neon-text-color); */
 }
 
-.owner-greetings{
+.header{
   padding: 10px 0;
   /* font-family: 'neon'; */
   color: #426DFB;
   text-shadow: 0 0 3vw #2356FF;
   width: 100vw;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.owner-greetings>i{
+.header h2 {
+  font-family: 'neon';
+}
+
+.header i{
   justify-content: flex-start;
   font-family: 'Dank Mono';
   color: #FB4264;
-  text-shadow: 0 0 3vw #F40A35;
+  text-shadow: 0 0 1vw #F40A35;
+  opacity: 0.9;
+}
+
+.header i>span {
+  animation: fluctuate 4s ease-in;
 }
 
 .wrapper{
@@ -63,7 +73,116 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
 }
 
+.wrapper > div {
+  margin-right: 25px;
+}
+
+.wrapper > div:last-child {
+  margin-right: 0px;
+}
+
 .success {
-  color: greenyellow;
-  border: 1px solid greenyellow;
+  color: #00ff99;
+  border: 1px solid #00ff99;
+}
+
+.header .custom-icon {
+  background-color: rgba(0,0,0,0.4);
+  padding: 1px 10px;
+  cursor: pointer;
+  box-shadow: 0 0 2px #08f;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-shadow: none;
+}
+
+.header .custom-icon:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.custom-icon span {
+  vertical-align: middle;
+}
+
+.todo-animate-enter {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.todo-animate-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all 300ms ease-in;
+}
+
+.todo-animate-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.todo-animate-exit-active {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 300ms ease-in;
+}
+
+.notes-animate-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.notes-animate-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all 300ms ease-in;
+}
+
+.notes-animate-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.notes-animate-exit-active {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 300ms ease-in;
+}
+
+.tabs-wrapper {
+  display: flex;
+  padding: 4px 15px;
+}
+
+.tabs-wrapper > .tab {
+  margin-left: 10px;
+}
+
+.tab.active{
+  margin-left: 10px;
+  background-color: #00ff99;
+  color: #111;
+}
+
+@keyframes fluctuate {
+  0%,
+	10%,
+	15%,
+	20%,
+	24%, 35%{
+    text-shadow: none;
+    color: #555;
+    opacity: 0.2;
+
+  }
+  7%,
+	12%,
+	16%,
+	19%,
+	25%,
+	100% {
+    opacity: 0.9;
+		/* text-shadow: 0 0 1vw #F40A35; */
+/*     color: #fff; */
+  }
 }

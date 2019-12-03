@@ -7,7 +7,7 @@ class Notes extends Component {
   constructor(props) {
     super(props);
     let notes = localStorage.getItem('notes');
-    notes = (notes === null || notes === '') ? [{id: 0, desc: 'Jot Down Things', timestamp: ''}] : JSON.parse(notes);
+    notes = (notes === null || notes === '') ? [{id: 0, desc: '', timestamp: ''}] : JSON.parse(notes);
     console.log('sds : ', notes);
     this.state = {
       notes,
@@ -32,7 +32,7 @@ class Notes extends Component {
     let id = notes.length + 1;
     let activeNote = notes.length;
     let timestamp = Date.now();
-    let note = {id, desc: 'Jot Down Things', timestamp};
+    let note = {id, desc: '', timestamp};
     console.log('notes before push : ', notes);
     notes.push(note);
     console.log('NOTES : ', note);
@@ -78,7 +78,7 @@ class Notes extends Component {
         {notes.map((note, index) => {
           return (
             <div key={note.timestamp} className='scaled-down-note-wrapper scaled-down'>  
-              <textarea disabled={true} defaultValue={note.desc} >
+              <textarea disabled={true} defaultValue={note.desc} placeholder='Jot Down Things'>
               </textarea>
               <div className='select-note'>
                 <span 
@@ -135,7 +135,7 @@ class Notes extends Component {
             data-for='show-all-notes'
             className='btn' 
             onClick={this.showAllNotes} 
-            style={{color: showAllNotes ? 'greenyellow': ''}}>
+            style={{color: showAllNotes ? '#00ff99': ''}}>
             <i style={{verticalAlign: 'middle'}} className='material-icons'>view_module</i>
           </div>  
         </div>
@@ -147,6 +147,7 @@ class Notes extends Component {
               <textarea 
                 style={{display: activeNote === index ? 'block':'none' }}
                 defaultValue={note.desc} 
+                placeholder='Jot Down Things'
                 key={index} 
                 onChange={(e) => this.saveNote(e, index)}>
               </textarea>
