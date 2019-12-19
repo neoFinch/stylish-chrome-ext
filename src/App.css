@@ -17,7 +17,9 @@ body{
   padding: 0;
   margin: 0;
   font-family: 'Dank Mono';
-  background: #111	;
+  background-color: #222;
+  /* background-image: url('./assets/images/bg.jpg'); */
+  background-size: cover;
   height: 100vh;
   font-size: 16px;
 }
@@ -43,8 +45,8 @@ h1, h2, h3, h4, h5, h6 {
 .header{
   padding: 10px 0;
   /* font-family: 'neon'; */
-  color: #426DFB;
-  text-shadow: 0 0 3vw #2356FF;
+  color: rgb(202, 212, 242);
+  text-shadow: 0 0 3vw #2356FF, 0 2px 3px#2356FF, 3px 0px 3px#2356FF;
   width: 100vw;
   display: flex;
   justify-content: flex-start;
@@ -146,6 +148,28 @@ h1, h2, h3, h4, h5, h6 {
 .notes-animate-exit-active {
   opacity: 0;
   transform: translateX(100px);
+  transition: all 300ms ease-in;
+}
+
+.settings-animate-enter {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.settings-animate-enter-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 300ms ease-in;
+}
+
+.settings-animate-exit {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.settings-animate-exit-active {
+  opacity: 0;
+  transform: translateY(100px);
   transition: all 300ms ease-in;
 }
 

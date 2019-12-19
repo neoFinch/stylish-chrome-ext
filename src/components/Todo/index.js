@@ -11,6 +11,7 @@ import {
 } from 'react-transition-group';
 import Tags from '../Tags';
 import { Observable, Subscriber } from 'rxjs';
+import { MdContentCopy } from 'react-icons/md'
 
 class Todo extends Component {
   constructor(props) {
@@ -199,6 +200,33 @@ class Todo extends Component {
     )
   }
 
+  copyTask = (e) => {
+    e.stopPropagation();
+    let currentElement = e.target;
+    let oldColor = currentElement.style.color;
+    currentElement.style.color = '#08f';
+    let parentElement = e.target.parentElement;
+    let taskTitle = parentElement.querySelector('.task-title');
+    let tempTextarea = document.createElement('textarea');
+    tempTextarea.value = taskTitle.innerHTML;    
+    document.body.appendChild(tempTextarea);
+    tempTextarea.select();
+    let suc = document.execCommand('copy');
+    document.body.removeChild(tempTextarea);
+    helper.createSnackbar(`Copied : <b>${taskTitle.innerHTML}</b>`, 3000, '#08f');
+    setTimeout(() => {
+      currentElement.style.color = oldColor;
+    }, 200)
+  }
+
+  editTask = (e) => {
+    e.stopPropagation();
+    let parentElement = e.target.parentElement;
+    let editableTask = parentElement.querySelector('.task-title')
+    editableTask.setAttribute('contenteditable', true);
+    editableTask.focus();
+  }
+
   filterListAndRender = (tasks, index, filterBy = 'all') => {
     let {animate} = this.state;
     if(filterBy === 'pending') {
@@ -214,7 +242,7 @@ class Todo extends Component {
           key={task.timestamp} 
           timeout={500} 
           classNames='animate'>
-          <div className='task'>
+          <div className='task' onClick={() => this.changeTaskStatus(index, task.timestamp)}>
             {task.status === false ? 
               <i className='material-icons'>check_box_outline_blank</i> 
               : 
@@ -222,10 +250,21 @@ class Todo extends Component {
             }
             <span 
               style={{textDecoration: task.status ? 'line-through': ''}}
-              className='task-title' 
-              onClick={() => this.changeTaskStatus(index, task.timestamp)}>
+              className='task-title'>
               {task.title}
             </span>
+            <i 
+              className='edit-task material-icons' 
+              style={{fontSize: '20px'}} 
+              onClick={this.editTask}>
+                edit
+            </i>
+            <i 
+              className='copy-task material-icons' 
+              style={{fontSize: '20px'}} 
+              onClick={this.copyTask}>
+                content_copy
+            </i>
             <i 
               onClick={() => this.deleteTask(index,task.timestamp)}
               className='delete-task material-icons'>
@@ -238,6 +277,19 @@ class Todo extends Component {
     })) 
   }
 
+  resetSomething = (e) => {
+    e.stopPropagation();
+    console.log('resetSomething');
+    e.stopPropagation();
+    console.log('resetSomething app js');
+    let allTaskElems = document.querySelectorAll('.task-title');
+    console.log('allTaskElems : ', allTaskElems);
+    allTaskElems.forEach((elem, i) => {
+      console.log(`${i} : `, elem);
+      elem.removeAttribute('contenteditable');
+    });
+  }
+
   handleTaskChange = (e) => {
     let task = e.target.value;
     this.setState({ task });
@@ -246,7 +298,8 @@ class Todo extends Component {
   render() {
     let {todo, task, activeTab} = this.state;
     return ( 
-      <div className='todo-wrapper'>
+      <div className='todo-wrapper' onClick={this.resetSomething}>
+        {/* <div className='blur-effect' ></div> */}
         <h2>TODO LIST</h2>
         <div className='tabs'>
           <div onClick={()=>{this.setState({ activeTab: 3 })}} key={3} className={activeTab===3 ? 'active':''}>

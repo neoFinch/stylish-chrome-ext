@@ -1,0 +1,22 @@
+.settings-wrapper {
+  margin-top: 30px;
+}
+
+.settings-wrapper__upload-img-wrapper {
+  margin-top: 40px;
+}
+
+#settings-wrapper__bg-img {
+  display: none;
+}
+
+.settings-wrapper__bg-img-label {
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.settings-wrapper__bg-img-label:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}

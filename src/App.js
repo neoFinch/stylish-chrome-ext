@@ -3,20 +3,52 @@ import './App.css';
 import Todo from './components/Todo';
 import Notes from './components/Notes';
 import {CSSTransition, TransitionGroup, Transition} from 'react-transition-group';
+import Settings from './components/Settings';
 
 function App() {
 
   const [show, setShow] = useState(true);
   const [showTodo, setShowTodo] = useState(true);
   const [showNotes, setShowNotes] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
 
   // setTimeout(() => setShow(true), 2500);
   
+
+  const handleSettings = () => {
+    console.log('called madar');
+    if (showSettings) {
+      setShowSettings(false);
+      setTimeout(() => {
+        setShowNotes(true);
+        setShowTodo(true);
+      }, 500)
+      
+    } else {
+      setShowNotes(false);
+      setShowTodo(false);
+      setTimeout(() => {
+        setShowSettings(true);
+      }, 700)
+    }
+  }
+
+  const resetSomething = (e) => {
+    e.stopPropagation();
+    console.log('resetSomething app js');
+    let allTaskElems = document.querySelectorAll('.task-title');
+    console.log('allTaskElems : ', allTaskElems);
+    allTaskElems.forEach((elem, i) => {
+      console.log(`${i} : `, elem);
+      elem.removeAttribute('contenteditable');
+    });
+  }
+
   return (
     <div>
       {
         show ?
-          <div className='container'>
+          <div className='container' onClick={resetSomething}>
             <div className='header'>
               <h2>
                 <i>Welc<span>ome</span></i>
@@ -32,6 +64,13 @@ function App() {
                   className={ showNotes ? 'custom-icon tab active' : 'custom-icon tab'}  
                   onClick={() => setShowNotes(!showNotes)}>
                   <span >Notes</span>
+                </div>
+                <div 
+                  className={`custom-icon tab`} 
+                  onClick={handleSettings}>
+                  <span className='material-icons'>
+                    settings_applications
+                  </span>
                 </div>
               </div>
             </div>
@@ -50,13 +89,13 @@ function App() {
                 classNames='notes-animate'>
                 <Notes/> 
               </CSSTransition>
-              {/* {
-                showNotes ?
-                  <Notes />
-                  :
-                  null
-              } */}
-              
+              <CSSTransition 
+                unmountOnExit
+                in={showSettings} 
+                timeout={300} 
+                classNames='settings-animate'>
+                <Settings/> 
+              </CSSTransition> 
             </div>
           </div>
           : 

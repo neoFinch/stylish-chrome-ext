@@ -26,7 +26,25 @@ const helper = {
       };
     });
     return groupArrays;
+  },
+
+  createSnackbar: (mssg, time, background) => {
+    let snackBar = document.createElement('div');
+    snackBar.style.background = background;
+    snackBar.style.padding = '10px';
+    snackBar.style.position = 'absolute';
+    snackBar.style.bottom = '30px';
+    snackBar.style.left = '30px';
+    snackBar.style.borderRadius = '5px';
+    snackBar.innerHTML = mssg;
+    
+    document.body.appendChild(snackBar);
+
+    setTimeout(() => {
+      document.body.removeChild(snackBar);
+    }, time)
   }
 }
 
 export default helper;
+
