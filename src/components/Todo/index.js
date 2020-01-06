@@ -17,7 +17,6 @@ class Todo extends Component {
   constructor(props) {
     let todo = localStorage.getItem('todo');
     todo = (todo === null || todo === '') ? [] : JSON.parse(todo);
-    console.log('todo : ', todo);
     super(props);
     this.state = {
       todo: todo,
@@ -60,17 +59,17 @@ class Todo extends Component {
 
   deleteTask = (index, timestamp) => {
     let {todo} = this.state;
-    console.log('to delete : ', todo[index]);
+    // console.log('to delete : ', todo[index]);
     todo[index].tasks = todo[index].tasks.filter(task => task.timestamp !== timestamp);
     this.setState({ todo });
     localStorage.setItem('todo', JSON.stringify([...todo]));
   }
 
   changeTaskStatus = (index, timestamp) => {
-    console.log('timestamp : ', timestamp);
+    // console.log('timestamp : ', timestamp);
     let {todo} = this.state;
 
-    console.log('task to change ', todo[index] );
+    // console.log('task to change ', todo[index] );
 
     todo[index].tasks.map(task => {
       if( task.timestamp === timestamp ) {
@@ -83,11 +82,10 @@ class Todo extends Component {
 
   keyDown = (e) => {
 
-    console.log('state : ', this.state);
     let key = e.nativeEvent.key;
     let task = e.target.value;
     // Manage showing tags  
-    console.log('key : ', key);  
+    // console.log('key : ', key);
     if(key === '#') {
       this.setState({ showTags: true })
     }
@@ -115,14 +113,13 @@ class Todo extends Component {
       let count = 0;
       todo.map((task, index) => {
         if(task.date === date) {
-          console.log('task matched : ', task);
+          // console.log('task matched : ', task);
           task.tasks.push({title, status, timestamp});
           ++count;
         } 
       })
       
       if(count === 0) {
-        console.log('if');
         todo.push({ date, tasks: [{title, status, timestamp}] });
       } 
 
@@ -279,13 +276,8 @@ class Todo extends Component {
 
   resetSomething = (e) => {
     e.stopPropagation();
-    console.log('resetSomething');
-    e.stopPropagation();
-    console.log('resetSomething app js');
     let allTaskElems = document.querySelectorAll('.task-title');
-    console.log('allTaskElems : ', allTaskElems);
     allTaskElems.forEach((elem, i) => {
-      console.log(`${i} : `, elem);
       elem.removeAttribute('contenteditable');
     });
   }

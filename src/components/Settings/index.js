@@ -1,7 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './style.css';
+import UserContext from '../../context/user';
+import {Observable} from 'rxjs'
+
 
 const Settings = () => {
+
+  const [firstName, setFirstName] = useState('');
+
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+  }
+
+  useEffect(() => {
+    // startObserver();
+    const userDetails = JSON.parse(localStorage.getItem('user-details'));
+    if (userDetails) {
+      const { firstName } = userDetails;
+      setFirstName(firstName);
+    }
+  }, []);
+
+  const user = useContext(UserContext);
+  console.log('user : ', user);
+
+
+  const saveFirstName = () => {
+    user.changeName(firstName);
+    console.log('fname : ', firstName);
+    localStorage.setItem('user-details', JSON.stringify({firstName}));
+  }
 
   const onFileUpload = (e) => {
     console.log('e : ', e.target.files[0]);
@@ -16,6 +44,16 @@ const Settings = () => {
           Upload Background Image 
         </label>
         <input id='settings-wrapper__bg-img' name='bg-img' type='file' onChange={onFileUpload}/>
+      </div>
+      <div className='settings-wrapper__first-name-wrapper'>
+        <label>Enter First Name</label>
+        <input
+          value={firstName}
+          onChange={handleFirstName}
+          className='settings-wrapper__first-name'
+          type='text'
+        />
+        <button onClick={saveFirstName} className='settings-wrapper__save'>Save</button>
       </div>
     </div>
   )

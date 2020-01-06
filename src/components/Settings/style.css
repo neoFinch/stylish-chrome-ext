@@ -20,3 +20,40 @@
   transform: scale(1.05);
   transition: all 0.3s ease;
 }
+
+.settings-wrapper__first-name-wrapper {
+  padding-top: 30px;
+}
+
+.settings-wrapper__first-name {
+  padding-top: 10px;
+  min-width: 300px;
+  border: none;
+  background-color: rgba(0,0,0,0.2);
+  outline: none;
+  font-size: 20px;
+  border-bottom: 2px solid #00ff99;
+  color: #00ff99;
+  display: block;
+}
+
+.settings-wrapper__first-name:focus {
+  border-bottom: 2px solid #00ff99;
+}
+
+.settings-wrapper__save {
+  margin-top: 10px;
+  min-width: 150px;
+  background-color: rgba(0,0,0,0.3);
+  border: 1px solid #00ff99;
+  color: #00ff99;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.settings-wrapper__save:hover {
+  background-color: #00ff99;
+  color: #111;
+  cursor: pointer;
+}

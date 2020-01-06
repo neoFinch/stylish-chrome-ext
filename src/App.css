@@ -9,16 +9,28 @@
 
 @font-face {
   font-family: 'neon';
-  /* src: url('./assets/fonts/NEON____.TTF'); */
-  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf');
+  src: url('./assets/fonts/NEON____.TTF');
 }
+
+@font-face {
+  font-family: 'automani';
+  src: url('./assets/fonts/AUTOMANI.TTF');
+}
+
+@font-face {
+  font-family: 'disco';
+  src: url('./assets/fonts/Disco3.ttf');
+}
+
 
 body{
   padding: 0;
   margin: 0;
   font-family: 'Dank Mono';
   background-color: #222;
-  /* background-image: url('./assets/images/bg.jpg'); */
+  background: linear-gradient(66deg, transparent 0%, transparent 24%,rgba(195, 195, 195,0.04) 24%, rgba(195, 195, 195,0.04) 80%,transparent 80%, transparent 100%),linear-gradient(153deg, transparent 0%, transparent 29%,rgba(195, 195, 195,0.04) 29%, rgba(195, 195, 195,0.04) 45%,transparent 45%, transparent 100%),linear-gradient(199deg, transparent 0%, transparent 32%,rgba(195, 195, 195,0.04) 32%, rgba(195, 195, 195,0.04) 59%,transparent 59%, transparent 100%),linear-gradient(277deg, transparent 0%, transparent 56%,rgba(195, 195, 195,0.04) 56%, rgba(195, 195, 195,0.04) 57%,transparent 57%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));
+  /* background: url('./assets/images/giphy.gif'); */
+  background-position: center;
   background-size: cover;
   height: 100vh;
   font-size: 16px;
@@ -54,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header h2 {
   font-family: 'neon';
+  font-weight: 100;
 }
 
 .header i{

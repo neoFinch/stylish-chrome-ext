@@ -6,10 +6,18 @@
   /* background-color: rgba(0,0,0,0.3); */
   padding: 0 20px;
   /* background-color: rgba(150, 150, 150, 0.2); */
-  background-color: #333333;
+  /* background-color: #333333; */
   border-radius: 5px;
   flex-direction: row;
   box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  /* backdrop-filter: blur(1px); */
+  background-color: rgba(50, 50, 50, 0.2);
+  backdrop-filter: blur(3px);
+}
+.notes-wrapper:hover {
+  /* backdrop-filter: blur(5px); */
+  background-color: rgba(20, 20, 20, 0.2);
+  transition: backdrop-filter 0.5s ease;
 }
 
 .notes-wrapper h2 {
@@ -21,7 +29,7 @@
 .notes-wrapper textarea{
   width: 100%;
   font-size: 14px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.2);
   color: #efefef;
   border: none;
   padding: 10px;

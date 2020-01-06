@@ -8,7 +8,6 @@ class Notes extends Component {
     super(props);
     let notes = localStorage.getItem('notes');
     notes = (notes === null || notes === '') ? [{id: 0, desc: '', timestamp: ''}] : JSON.parse(notes);
-    console.log('sds : ', notes);
     this.state = {
       notes,
       activeNote: 0,
@@ -18,12 +17,10 @@ class Notes extends Component {
 
   saveNote = (e, index) => {
     let { notes } =  this.state;
-    console.log(e.target.value);
     //  notes[index].timestamp = Date.now();
     //  notes[index].id = notes.length - 1;
     notes[index].desc = e.target.value; 
     this.setState({ notes });
-    console.log('notes: ', notes);
     localStorage.setItem('notes', JSON.stringify(notes));
   }
 
@@ -33,23 +30,17 @@ class Notes extends Component {
     let activeNote = notes.length;
     let timestamp = Date.now();
     let note = {id, desc: '', timestamp};
-    console.log('notes before push : ', notes);
     notes.push(note);
-    console.log('NOTES : ', note);
-    this.setState({ notes, activeNote }, () => {console.log( this.state )});
+    this.setState({ notes, activeNote });
     localStorage.setItem('notes', JSON.stringify([...notes]));
   }
 
   changeNote = (val) => {
     let {activeNote, notes} = this.state;
     if(val === 'increase') {
-      console.log('if : ', val);
-      console.log('active note :', activeNote);
       activeNote = activeNote+1 < notes.length ? activeNote+1: activeNote;
       this.setState({ activeNote });
     } else {
-      console.log('else : ', val);
-      console.log('active note :', activeNote);
       activeNote = activeNote-1 >= 0 ? activeNote-1: activeNote;
       this.setState({ activeNote });
     }
@@ -63,10 +54,7 @@ class Notes extends Component {
 
   deleteNote = (index) => {
     let {notes} = this.state;
-    console.log('index : ', index);
-    console.log('nots: ', notes);
     notes = notes.filter((note, i) => i!==index);
-    console.log('nots: ', notes);
     this.setState({notes, activeNote: 0});
     localStorage.setItem('notes', JSON.stringify([...notes]));
   }

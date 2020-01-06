@@ -1,5 +1,10 @@
 const helper = {
 
+  getNumDaysByMonth: (month) => {
+    const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    return days[month];
+  },
+
   getTodayDate: () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
