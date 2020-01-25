@@ -25,6 +25,8 @@
 .todo-wrapper > h2 {
   width: 100%;
   margin-bottom: 10px;
+  /* font-family: 'neon'; */
+  color: #777;
 }
 
 .task {

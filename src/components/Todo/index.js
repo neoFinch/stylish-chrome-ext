@@ -292,7 +292,7 @@ class Todo extends Component {
     return ( 
       <div className='todo-wrapper' onClick={this.resetSomething}>
         {/* <div className='blur-effect' ></div> */}
-        <h2>TODO LIST</h2>
+        <h2>TODO</h2>
         <div className='tabs'>
           <div onClick={()=>{this.setState({ activeTab: 3 })}} key={3} className={activeTab===3 ? 'active':''}>
             All
