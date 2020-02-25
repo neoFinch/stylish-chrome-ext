@@ -9,15 +9,17 @@
   /* background-color: #333333; */
   border-radius: 5px;
   flex-direction: row;
-  box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  /* box-shadow: 0 0 4px rgba(0,0,0,0.4); */
   /* backdrop-filter: blur(1px); */
-  background-color: rgba(50, 50, 50, 0.2);
+  /* background-color: rgba(50, 50, 50, 0.2);  */
   backdrop-filter: blur(3px);
   font-family: 'Dank Mono';
+  /* box-shadow: -2px -2px 3px 2px rgba(50, 50, 50, 0.7), 
+              2px 2px 4px 2px rgba(0,0,0,0.4); */
 }
 .notes-wrapper:hover {
   /* backdrop-filter: blur(5px); */
-  background-color: rgba(20, 20, 20, 0.2);
+  /* background-color: rgba(20, 20, 20, 0.2); */
   transition: backdrop-filter 0.5s ease;
 }
 
@@ -41,6 +43,8 @@
   margin-bottom: 10px;
   line-height: 20px;
   letter-spacing: 1px;
+  /* box-shadow: inset -2px -2px 3px 2px rgba(50, 50, 50, 0.7), 
+              inset 2px 2px 4px 2px rgba(0,0,0,0.4); */
 }
 
 .notes-wrapper textarea:focus {
@@ -54,11 +58,14 @@
   display: inline-block;
   vertical-align: bottom;
   transition: all 0.3s ease;
+  background: linear-gradient(145deg, #242424, #1f1f1f);
+  box-shadow: -2px -2px 3px 2px rgba(50, 50, 50, 0.7), 
+              2px 2px 4px 2px rgba(0,0,0,0.4);
 }
 
 .add-note:hover {
   /* box-shadow: 0 0 1vw #00ff99; */
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
   color: #00ff99;
   transition: all 0.1s ease;
 }
@@ -67,24 +74,28 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  
 }
 
 .notes-action .btn {
   margin-top: 15px;
   margin-bottom: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(0, 0, 0, 0.2); */
   height: 20px;
   padding: 5px;
-  margin-right: 5px;
+  margin-right: 15px;
   border-radius: 5px;
   cursor: pointer;
   align-self: flex-end;
+  box-shadow: -2px -2px 3px 2px rgba(50, 50, 50, 0.7), 
+              2px 2px 4px 2px rgba(0,0,0,0.4);
+  background: linear-gradient(145deg, #242424, #1f1f1f);
 }
 
 .notes-action .btn:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   color: #00ff99;
-  box-shadow: 0 0 3px #00ff99;
+  /* box-shadow: 0 0 3px #00ff99; */
 }
 
 .notes-wrapper .scaled-down {

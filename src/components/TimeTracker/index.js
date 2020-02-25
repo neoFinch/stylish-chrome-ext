@@ -17,8 +17,7 @@ class TimeTracker extends React.Component {
       timeLog: {}
     };
   }
-
-
+ 
   handleDayClick = (e) => {
     let {selectedDate, timeLog, showTimeLogger} = this.state;
     this.setState({ showTimeLogger: 1 })
