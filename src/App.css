@@ -29,7 +29,7 @@ body{
   font-family: 'Dank Mono';
   background-color: #222;
   background: linear-gradient(66deg, transparent 0%, transparent 24%,rgba(195, 195, 195,0.04) 24%, rgba(195, 195, 195,0.04) 80%,transparent 80%, transparent 100%),linear-gradient(153deg, transparent 0%, transparent 29%,rgba(195, 195, 195,0.04) 29%, rgba(195, 195, 195,0.04) 45%,transparent 45%, transparent 100%),linear-gradient(199deg, transparent 0%, transparent 32%,rgba(195, 195, 195,0.04) 32%, rgba(195, 195, 195,0.04) 59%,transparent 59%, transparent 100%),linear-gradient(277deg, transparent 0%, transparent 56%,rgba(195, 195, 195,0.04) 56%, rgba(195, 195, 195,0.04) 57%,transparent 57%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));
-  /* background: url('./assets/images/giphy.gif'); */
+  background: url('./assets/images/hacker_background.jpg');
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -114,6 +114,11 @@ h1, h2, h3, h4, h5, h6 {
 .header .custom-icon:hover {
   transform: scale(1.05);
   transition: all 0.3s ease;
+}
+
+.settings-tab {
+  position: absolute;
+  right: 1%;
 }
 
 .custom-icon span {
