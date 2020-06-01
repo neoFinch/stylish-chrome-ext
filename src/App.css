@@ -72,15 +72,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .header i{
   justify-content: flex-start;
-<<<<<<< HEAD
-  font-family: 'Dank Mono';
-  color: #FB4264;
-  text-shadow: 0 0 1vw #F40A36;
-=======
   font-family: 'neon';
   color: #00ff99;
   text-shadow: 0 0 1vw #00ff99;
->>>>>>> 99d819d0b9f222d29ce050db668b43c499508d17
   opacity: 0.9;
   line-height: 25px;
 }
