@@ -86,10 +86,17 @@ function App() {
       <div>
         <div className='container' onClick={resetSomething}>
           <div className='header'>
+            <div
+                className= { showSettings ? `custom-icon settings-tab tab active` : 'custom-icon settings-tab tab'} 
+                onClick={handleSettings}>
+                <span className='material-icons'>
+                  settings
+                </span>
+            </div>
             <h2>
               <i>Welc<span>ome</span></i>
               {' ' + userName}
-            </h2>
+            </h2> */}
             <div className='tabs-wrapper'>
               <div 
                 className={ showTodo ? 'custom-icon tab active' : 'custom-icon tab'} 
@@ -108,13 +115,7 @@ function App() {
                   Time Tracker
                 </span>
               </div>
-              <div 
-                className={ showSettings ? `custom-icon tab active` : 'custom-icon tab'} 
-                onClick={handleSettings}>
-                <span className='material-icons'>
-                  settings
-                </span>
-              </div>
+              
             </div>
           </div>
           <div className='wrapper'>

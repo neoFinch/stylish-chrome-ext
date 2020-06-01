@@ -14,12 +14,12 @@
 
 @font-face {
   font-family: 'automani';
-  src: url('./assets/fonts/AUTOMANI.TTF');
+  /* src: url('./assets/fonts/AUTOMANI.TTF'); */
 }
 
 @font-face {
   font-family: 'disco';
-  src: url('./assets/fonts/Disco3.ttf');
+  /* src: url('./assets/fonts/Disco3.ttf'); */
 }
 
 
@@ -29,7 +29,7 @@ body{
   font-family: 'Dank Mono';
   background-color: #222;
   background: linear-gradient(66deg, transparent 0%, transparent 24%,rgba(195, 195, 195,0.04) 24%, rgba(195, 195, 195,0.04) 80%,transparent 80%, transparent 100%),linear-gradient(153deg, transparent 0%, transparent 29%,rgba(195, 195, 195,0.04) 29%, rgba(195, 195, 195,0.04) 45%,transparent 45%, transparent 100%),linear-gradient(199deg, transparent 0%, transparent 32%,rgba(195, 195, 195,0.04) 32%, rgba(195, 195, 195,0.04) 59%,transparent 59%, transparent 100%),linear-gradient(277deg, transparent 0%, transparent 56%,rgba(195, 195, 195,0.04) 56%, rgba(195, 195, 195,0.04) 57%,transparent 57%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));
-  /* background: url('./assets/images/giphy.gif'); */
+  background: url('./assets/images/hacker_background.jpg');
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -58,23 +58,31 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 0;
   /* font-family: 'neon'; */
   color: rgb(202, 212, 242);
-  text-shadow: 0 0 3vw #2356FF, 0 2px 3px#2356FF, 3px 0px 3px#2356FF;
+  text-shadow: 0 0 1vw #08f, 0 2px 3px#08f, 3px 0px 3px#08f;
   width: 100vw;
   display: flex;
   justify-content: flex-start;
 }
 
 .header h2 {
+  padding-top: 8px;
   font-family: 'neon';
   font-weight: 100;
 }
 
 .header i{
   justify-content: flex-start;
+<<<<<<< HEAD
   font-family: 'Dank Mono';
   color: #FB4264;
   text-shadow: 0 0 1vw #F40A36;
+=======
+  font-family: 'neon';
+  color: #00ff99;
+  text-shadow: 0 0 1vw #00ff99;
+>>>>>>> 99d819d0b9f222d29ce050db668b43c499508d17
   opacity: 0.9;
+  line-height: 25px;
 }
 
 .header i>span {
@@ -102,18 +110,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .custom-icon {
-  background-color: rgba(0,0,0,0.4);
+  /* background-color: rgba(0,0,0,0.4); */
   padding: 1px 10px;
   cursor: pointer;
-  box-shadow: 0 0 2px #08f;
+  /* box-shadow: 0 0 2px #08f; */
   border-radius: 5px;
   transition: all 0.3s ease;
   text-shadow: none;
+  box-shadow: -2px -2px 3px 2px rgba(50, 50, 50, 0.7), 
+              2px 2px 4px 2px rgba(0,0,0,0.4);
 }
 
 .header .custom-icon:hover {
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
   transition: all 0.3s ease;
+}
+
+.settings-tab {
+  position: absolute;
+  right: 1%;
 }
 
 .custom-icon span {
@@ -197,8 +212,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .tab.active{
   margin-left: 10px;
-  background-color: #00ff99;
-  color: #111;
+  /* background-color: #00ff99; */
+  color: #00ff99;
+  box-shadow: inset -2px -2px 3px 2px rgba(50, 50, 50, 0.7), 
+              inset 2px 2px 4px 2px rgba(0,0,0,0.4);
 }
 
 @keyframes fluctuate {
