@@ -1,8 +1,15 @@
+.time-container {
+  position: relative;
+}
 .time-tracker-container {
-  /* width: 100%; */
   display: flex;
   flex: 1;
-  
+  background-color: rgba(50, 50, 50, 0.2);
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  margin-top: 25px;
+  padding: 0 30px;
+  position: relative;
 }
 
 .grid-wrapper {
@@ -38,7 +45,7 @@
 }
 
 .react-calendar__navigation__label {
-  box-shadow: 0px 0px 2px #08f;
+  /* box-shadow: 0px 0px 2px #08f; */
   color: #fff;
   font-size: 14px;
 }
@@ -52,11 +59,97 @@
 }
 
 .react-calendar__navigation__arrow {
-  box-shadow: 0px 0px 2px #08f;
+  /* box-shadow: 0px 0px 1px #555; */
+  background-color: #777;
   color: #08f;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .react-calendar__navigation__arrow:hover {
   background-color: #333 !important;
+}
+
+.time-logger {
+  padding: 10px;
+  background-color: rgba(50, 50, 50, 0.7);
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  position: absolute;
+  top: 25px;
+  height: 100%;
+  width: calc(100% - 20px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+}
+
+.time-logger .action-bar {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 100%;
+}
+
+.action-bar > div:nth-child(1) {
+  flex: 0.8;
+}
+
+.action-bar .icon-wrapper {
+  flex: 0.2;
+  text-align: right;
+}
+
+.action-bar .icon-wrapper i{
+  color: red;
+  cursor: pointer;
+}
+
+.action-bar .icon-wrapper i:hover{
+  transform: scale(1.2);
+}
+
+.timeline {
+  width: 100%;
+  overflow: auto;
+  height: 90%;
+  padding: 10px;
+}
+
+.timeline-box {
+  display: flex;
+  padding: 10px;
+  background-color: rgba(10, 50, 10, 0.3);
+  flex: 1;
+  margin-top: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px rgba(10, 160, 10, 0.3);
+  color: #ccc;
+}
+
+.timeline-box > div:first-child {
+  margin-right: 10px;
+  background-color: rgba(10, 100, 10, 0.3);
+  border: 1px solid  rgba(10, 160, 10, 0.3);
+  width: 150px;
+  text-align: center;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.timeline-box > div {
+  outline: none;
+}
+
+.timeline-box .content {
+  padding: 2px;
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.time-logger .title {
+  color: #ddd;
 }

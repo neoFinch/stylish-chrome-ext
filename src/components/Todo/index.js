@@ -13,6 +13,10 @@ import Tags from '../Tags';
 import { Observable, Subscriber } from 'rxjs';
 import { MdContentCopy } from 'react-icons/md'
 
+const taskColors = ['#00bcd4', '#009688', '#66bb6a', '#cddc39', '#ffa726', '#ff8a65', '#f06292', '#ce93d8', 'salmon', 'red'];
+
+
+
 class Todo extends Component {
   constructor(props) {
     let todo = localStorage.getItem('todo');
@@ -233,17 +237,21 @@ class Todo extends Component {
     } else {
       // nothing
     }
-    return (tasks.map((task) => {
+    return (tasks.map((task, ind) => {
       return (
         <CSSTransition 
           key={task.timestamp} 
           timeout={500} 
           classNames='animate'>
-          <div className='task' onClick={() => this.changeTaskStatus(index, task.timestamp)}>
+          <div 
+            className='task' 
+            style={{color: taskColors[index%10]}} 
+            onClick={() => this.changeTaskStatus(index, task.timestamp)}
+          >
             {task.status === false ? 
               <i className='material-icons'>check_box_outline_blank</i> 
               : 
-              <i className='material-icons success-icon'>check_box</i>
+              <i  className='material-icons'>check_box</i>
             }
             <span 
               style={{textDecoration: task.status ? 'line-through': ''}}
@@ -292,7 +300,7 @@ class Todo extends Component {
     return ( 
       <div className='todo-wrapper' onClick={this.resetSomething}>
         {/* <div className='blur-effect' ></div> */}
-        <h2>TODO LIST</h2>
+        <h2>TODO</h2>
         <div className='tabs'>
           <div onClick={()=>{this.setState({ activeTab: 3 })}} key={3} className={activeTab===3 ? 'active':''}>
             All

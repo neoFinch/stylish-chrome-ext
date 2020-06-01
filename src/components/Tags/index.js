@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 
 function Tags({ text }) {
-  const [tags, setTags] = useState(['Priority 1', 'Priority 2']);
+  const [tags] = useState(['Priority 1', 'Priority 2']);
 
   return (
     <div className='tags-wrapper'>
