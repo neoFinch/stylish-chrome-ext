@@ -1,15 +1,19 @@
 # New Tab Chrome Extension
+
 ---
 Description: Override New tab of chrome browser and manage your tasks, take notes. No more hassle of moving to different App to take notes.
 ---
+---
+Design: Following neumorphism design trend UI is both trendy and sleek.
+---
 
+### Preview
 <img src="https://i.imgur.com/pVeyuue.png" width="500px" alt="Preview"/>
 <img src="https://i.imgur.com/vlTEgZN.png" width="500px" alt="Preview"/>
 
 
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
