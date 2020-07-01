@@ -1,6 +1,6 @@
 # New Tab Chrome Extension
 ---
-Description: Override New tab of chrome browser and manage your tasks, take notes. No more hassle to move to different app to take notes and save important things. 
+Description: Override New tab of chrome browser and manage your tasks, take notes. No more hassle of moving to different App to take notes.
 ---
 
 <img src="https://i.imgur.com/pVeyuue.png" width="500px" alt="Preview"/>
