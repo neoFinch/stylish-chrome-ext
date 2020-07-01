@@ -6,11 +6,6 @@
 ### Following neumorphism design trend, UI is both new and sleek.
 ---
 
-### Preview
-<img src="https://i.imgur.com/pVeyuue.png" width="500px" alt="Preview"/>
-<img src="https://i.imgur.com/vlTEgZN.png" width="500px" alt="Preview"/>
-
-
 ### How to use
 ---
 It is still in development phase but here are the steps by which you can get it to work without downloading it from chrome extension marketplace.
@@ -26,9 +21,14 @@ It is still in development phase but here are the steps by which you can get it 
 App is build with ReactJS using `create-react-app`.
 `React-transition-group` is used for animations.
 
-# Features!
+### Features!
 
   - Todo List
   - Notes
   - Time Tracker
 
+### Preview
+<img src="https://i.imgur.com/pVeyuue.png" width="500px" alt="Preview"/>
+<img src="https://i.imgur.com/vlTEgZN.png" width="500px" alt="Preview"/>
+<img src="https://i.imgur.com/wZpmvWO.png" width="500px" alt="Preview"/>
+<img src="https://i.imgur.com/s88yZL3.png" width="500px" alt="Preview"/>
