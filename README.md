@@ -1,6 +1,8 @@
 ---
-description: Override New tab of chrome browser.
+Description: Override New tab of chrome browser.
 ---
+
+![Preview](https://i.imgur.com/pVeyuue.png)
 
 # Chrome Extension
 
