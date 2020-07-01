@@ -2,8 +2,9 @@
 Description: Override New tab of chrome browser.
 ---
 
-![Preview](https://i.imgur.com/pVeyuueh.png =250x250)
-<img src="https://i.imgur.com/pVeyuueh.png" width="250px"/>
+<img src="https://i.imgur.com/pVeyuue.png" width="350px" alt="Preview"/>
+<img src="https://i.imgur.com/vlTEgZN.png" width="350px" alt="Preview"/>
+
 
 # Chrome Extension
 
