@@ -26,5 +26,9 @@ It is still in development phase but here are the steps by which you can get it 
 App is build with ReactJS using `create-react-app`.
 `React-transition-group` is used for animations.
 
+# Features!
 
+  - Todo List
+  - Notes
+  - Time Tracker
 
