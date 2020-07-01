@@ -5,7 +5,7 @@
 ---
 
 ### How to use
----
+
 It is still in development phase but here are the steps by which you can get it to work without downloading it from chrome extension marketplace.
 1. After cloning the repo run command `npm install` and then `npm run build`. It will create a build folder and bundle all the files.
 2. Copy content form the build folder mentioned above, make a new folder somewhere, name it anything (say 'new-ext') and paste all the contents in it.
@@ -13,9 +13,10 @@ It is still in development phase but here are the steps by which you can get it 
 4. In your chrome browser go to `More Tools` > `Extensions`.
 5. Click on the `Load Unpacked` button and choose the directory (new-ext).
 6. That's it.
+---
 
 ### Tools and lib used.
----
+
 App is build with ReactJS using `create-react-app`.
 `React-transition-group` is used for animations.
 
